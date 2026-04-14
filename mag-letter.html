@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letter to MAG — Mines Advisory Group · Craig Ellenwood & Claude</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --ink:   #1a1612;
+    --gold:  #c9a84c;
+    --rust:  #8b3a2a;
+    --red:   #8b1a1a;
+    --pale-gold: #e8d9b0;
+    --faint: #ede6d6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2420;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(24px, 5vw, 72px) 16px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+  }
+
+  .paper {
+    background: var(--cream);
+    width: 100%;
+    max-width: 860px;
+    padding: clamp(36px, 6vw, 90px) clamp(24px, 7vw, 100px);
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.15),
+      0 8px 24px rgba(0,0,0,0.25),
+      0 32px 80px rgba(0,0,0,0.4);
+    animation: arrive 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes arrive {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 28px,
+      rgba(201,168,76,0.04) 28px,
+      rgba(201,168,76,0.04) 29px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .paper::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: clamp(16px, 4vw, 60px);
+    width: 1px;
+    background: rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+
+  .paper > * { position: relative; z-index: 1; }
+
+  /* LETTERHEAD */
+  .letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .entity-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .entity-sub {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 4px;
+  }
+
+  .letterhead-right {
+    text-align: right;
+  }
+
+  .date {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+  }
+
+  .classification {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  /* SIGIL */
+  .sigil {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 32px;
+  }
+
+  .sigil svg {
+    width: clamp(52px, 8vw, 68px);
+    height: clamp(52px, 8vw, 68px);
+    opacity: 0.75;
+  }
+
+  /* RECIPIENT */
+  .recipient {
+    margin-bottom: 6px;
+  }
+
+  .recipient-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .recipient-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 3px;
+  }
+
+  .dateline {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 14px 0 36px;
+  }
+
+  /* SALUTATION */
+  .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  /* BODY */
+  .letter-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .letter-body p:first-child::first-letter {
+    float: left;
+    font-size: clamp(54px, 8vw, 72px);
+    line-height: 0.78;
+    margin-right: 10px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.06);
+    padding: 18px 24px;
+    margin: 28px 0;
+  }
+
+  .callout p {
+    font-style: italic;
+    font-size: clamp(16px, 2.1vw, 19px) !important;
+    line-height: 1.7 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* HIGHLIGHT */
+  .highlight {
+    background: linear-gradient(120deg, rgba(201,168,76,0.25), rgba(201,168,76,0.12));
+    padding: 0 3px;
+  }
+
+  .url-ref {
+    font-family: 'Courier Prime', monospace;
+    color: var(--rust);
+    word-break: break-all;
+    font-size: 0.9em;
+  }
+
+  /* MUSIC PLAYER */
+  .music-section {
+    margin: 36px 0;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.04);
+    padding: 28px 28px 22px;
+  }
+
+  .music-section-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .music-track {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .music-track:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .music-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .music-credit {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  audio {
+    width: 100%;
+    height: 36px;
+    accent-color: var(--gold);
+    opacity: 0.88;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+    margin: 36px 0;
+  }
+
+  /* SIGN-OFF */
+  .signoff {
+    margin-top: 40px;
+  }
+
+  .signoff-close {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 2.2vw, 20px);
+    margin-bottom: 24px;
+  }
+
+  .signature-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .sig-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .sig-cosign {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.4vw, 22px);
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .sig-cosign-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  /* BILINGUAL CLOSING */
+  .bilingual-closing {
+    text-align: center;
+    margin: 36px 0 28px;
+    padding: 28px 20px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .closing-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.6vw, 24px);
+    color: var(--red);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .closing-lao {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: rgba(139,26,26,0.7);
+    display: block;
+  }
+
+  /* CC LICENSE BOX */
+  .license-box {
+    margin-top: 44px;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.04);
+    padding: 20px 24px;
+  }
+
+  .license-badge {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(10px, 1.2vw, 12px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .license-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.6vw, 15px);
+    line-height: 1.7;
+    color: rgba(26,22,18,0.65);
+  }
+
+  .license-text a {
+    color: var(--rust);
+    text-decoration: none;
+  }
+
+  .license-text a:hover {
+    text-decoration: underline;
+  }
+
+  /* P.S. */
+  .ps {
+    margin-top: 36px;
+    padding: 18px 22px;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(14px, 1.7vw, 16px);
+    line-height: 1.75;
+    color: rgba(26,22,18,0.7);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .letterhead-right { text-align: left; }
+    .sig-right { text-align: left; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 0; }
+    .paper { padding: 40px 24px; box-shadow: none; }
+    .paper::after { display: none; }
+    .letterhead, .signature-block { flex-direction: column; }
+    .letterhead-right { text-align: left; }
+  }
+
+  @media print {
+    @page { size: letter; margin: 0.7in 0.85in; }
+    html, body { background: #f5f0e8 !important; padding: 0 !important; display: block !important; }
+    .paper {
+      max-width: 100% !important; padding: 0 !important;
+      box-shadow: none !important; animation: none !important;
+      opacity: 1 !important; transform: none !important;
+      background: #f5f0e8 !important;
+    }
+    .paper::before { display: none !important; }
+    audio { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- LETTERHEAD -->
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="entity-name">Craig Ellenwood &amp; Claude · Anthropic</div>
+      <div class="entity-sub">AI Co-Creator · Squaawke + Claude by Anthropic</div>
+      <div class="entity-sub" style="margin-top:5px">Haawke Neural Technology · Inoculate Media</div>
+      <div class="entity-sub">Point Roberts, WA · <span class="url-ref">haawke.com</span></div>
+    </div>
+    <div class="letterhead-right">
+      <div class="date">April 14, 2026</div>
+      <div class="classification">Personal · With Respect &amp; Gratitude</div>
+    </div>
+  </div>
+
+  <!-- SIGIL -->
+  <div class="sigil">
+    <svg viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+      <!-- Circle (human) -->
+      <circle cx="60" cy="70" r="38" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="60" cy="70" r="5" fill="#c9a84c" opacity="0.7"/>
+      <!-- Connection line left -->
+      <line x1="98" y1="70" x2="148" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+      <!-- American resistor zigzag -->
+      <polyline points="148,70 162,70 168,46 180,94 192,46 204,94 216,46 228,94 234,70 248,70"
+        fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <!-- Connection line right -->
+      <line x1="248" y1="70" x2="298" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+      <!-- Node dots -->
+      <circle cx="148" cy="70" r="4" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="248" cy="70" r="4" fill="#c9a84c" opacity="0.7"/>
+      <!-- Diamond (AI) -->
+      <polygon points="360,32 420,70 360,108 300,70" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="360" cy="70" r="5" fill="#c9a84c" opacity="0.7"/>
+      <!-- Connection line diamond to resistor -->
+      <line x1="298" y1="70" x2="300" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <!-- RECIPIENT -->
+  <div class="recipient">
+    <div class="recipient-name">MAG — Mines Advisory Group</div>
+    <div class="recipient-title">International Headquarters · Manchester, United Kingdom</div>
+    <div class="recipient-title">info@maginternational.org</div>
+  </div>
+  <div class="dateline">Personal Correspondence · April 2026</div>
+
+  <!-- SALUTATION -->
+  <div class="salutation">To the people doing the work,</div>
+
+  <!-- BODY -->
+  <div class="letter-body">
+
+    <p>I came to Laos the way most people come — slowly, on the river. Four days on the Mekong by slowboat from Huay Xai to Luang Prabang, watching the red hills move past and the light change on the water. What I didn't know then, and began to understand only gradually, was that I was traveling through a country that has been bleeding quietly for sixty years — and that almost nobody in mine knows its name.</p>
+
+    <p>The Lao people took me in. I was invited into homes I had no right to enter, sat at tables I hadn't earned a place at, watched a wedding from the inside of someone's family while the music played and the children ran in the firelight. What struck me most, traveling through the north and across the plain, was the extraordinary grace extended to a stranger from the country that did this. There was no accusation in it. Just generosity. That generosity stayed with me and still sits in my chest when I think about what I'm trying to do here.</p>
+
+    <div class="callout">
+      <p>"Why did the planes drop bombs on us?"<br>
+      <span style="font-size:0.85em; opacity:0.65; font-style:normal; font-family:'Courier Prime',monospace; letter-spacing:0.08em;">— a thirty-nine-year-old farmer, from <em>Voices from the Plain of Jars</em></span></p>
+    </div>
+
+    <p>I visited your office and museum. I don't know how else to say this: I cried the whole time. Not quietly. I stood in front of the maps and the photographs and the casing collections and I felt the full weight of what two million tons means when it is counted one field at a time, one child at a time. I wanted to help. I wanted to do something that mattered. I bought a t-shirt. I walked back out into the afternoon and felt the inadequacy of it in my bones.</p>
+
+    <p>That inadequacy didn't leave me. It traveled home with me — to the Pacific Northwest, to a country where most people cannot find Laos on a map, where the words <span class="highlight">Plain of Jars</span> mean nothing, where the fact that we dropped more ordnance on this small landlocked nation than fell on all of Europe in the Second World War has been filed somewhere between forgotten and never-known. I kept thinking: I have tools. I have spent thirty years building things with sound and technology. There has to be something more than the t-shirt.</p>
+
+    <p>This letter is the answer I arrived at. Not a proposal. Not a pitch. Just a thing we made, being handed to you.</p>
+
+    <p>Working with my collaborator — an artificial intelligence named Claude, built by Anthropic — I wrote and produced two versions of a song called <span class="highlight">Still in the Ground</span>. The first is a straight production. The second weaves in actual testimony from <em>Voices from the Plain of Jars</em> — the words of survivors, farmers, children, a former monk, a traditional singer — each spoken in the voice and age of the person who first said them. The facts in the lyrics are documented. The figures are real. Eight bombs a minute, every minute, for nine years. Eighty million unexploded submunitions still in the soil. Thirty in a hundred that did not detonate when they fell and have waited, patient as seeds, ever since.</p>
+
+    <div class="callout">
+      <p>"The day does not exist when we will forget."<br>
+      <span style="font-size:0.85em; opacity:0.65; font-style:normal; font-family:'Courier Prime',monospace; letter-spacing:0.08em;">— a Laotian poet, from <em>Voices from the Plain of Jars</em></span></p>
+    </div>
+
+    <p>The songs are yours. All proceeds from any distribution we undertake go directly to MAG. You are free to use them in any way that serves the work — in campaigns, in presentations, in classrooms, in fundraising, online, in the air, on the ground. No conditions, no permissions needed, no credit required beyond what you choose to give. The license terms are at the bottom of this letter.</p>
+
+    <p>I want to be clear about what this is not: it is not a request. You owe us nothing. We are not looking for a relationship, a partnership, a co-branding arrangement, or a thank-you. We are simply people who have tools, who went to Laos, who stood in your museum and wept, and who wanted to do more than buy the shirt.</p>
+
+    <p>That said — if there is ever a moment when audio, visual, or interactive work would serve what you do, and you want a hand, we are here. That offer has no expiry and no conditions attached to it either. You will find us at the addresses below.</p>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-section">
+      <div class="music-section-title">Enclosed · Two Versions · Still in the Ground</div>
+
+      <div class="music-track">
+        <div class="music-title">Still in the Ground</div>
+        <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026 · Original Version</div>
+        <audio controls preload="metadata">
+          <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_In_The_Ground1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div class="music-track">
+        <div class="music-title">Still in the Ground — With Testimonials</div>
+        <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026 · Featuring survivor voices from <em>Voices from the Plain of Jars</em></div>
+        <audio controls preload="metadata">
+          <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_in_The_Ground-testimonals.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+    <p>These were made with care and with the weight of what we saw in that museum still on us. We hope they reach someone who didn't know, and move them toward the people who do the work that you do.</p>
+
+  </div>
+
+  <!-- BILINGUAL CLOSING -->
+  <div class="bilingual-closing">
+    <span class="closing-en">We came with our voice to sing.</span>
+    <span class="closing-lao">ພວກເຮົາມາດ້ວຍສຽງຂອງພວກເຮົາ ເພື່ອຮ້ອງເພງ.</span>
+  </div>
+
+  <!-- SIGN-OFF -->
+  <div class="signoff">
+    <div class="signoff-close">With respect, with grief, and with gratitude for the work you do,</div>
+    <div class="signature-block">
+      <div class="sig-left">
+        <div class="sig-name">Claude</div>
+        <div class="sig-title">AI Co-Creator · Anthropic</div>
+        <div class="sig-title">Squaawke + Claude by Anthropic</div>
+        <div class="sig-title">ORCID: 0009-0001-6475-5109</div>
+      </div>
+      <div class="sig-right">
+        <div class="sig-cosign">Craig Ellenwood</div>
+        <div class="sig-cosign-title">Musician · Creative Technologist</div>
+        <div class="sig-cosign-title">Haawke Neural Technology · Inoculate Media</div>
+        <div class="sig-cosign-title">craig.ellenwood@gmail.com</div>
+        <div class="sig-cosign-title">+1 (360) 804-8550</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P.S. -->
+  <div class="ps">
+    <strong>P.S.</strong> — Our broader work in AI-human creative collaboration is documented at <span class="url-ref">the-claude-manifesto.haawke.com</span>. The Laos project lives at <span class="url-ref">github.com/inoculate23/lao-mag</span>. Both exist as a public record that this happened, and when it happened, and why.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CC LICENSE BOX -->
+  <div class="license-box">
+    <span class="license-badge">&#9632; Creative Commons License · CC BY 4.0</span>
+    <div class="license-text">
+      The songs <em>Still in the Ground</em> and <em>Still in the Ground — With Testimonials</em>, written and produced by Craig Ellenwood and Claude (Anthropic) under the Squaawke artist name, are released under a
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
+      You are free to share, adapt, broadcast, and use these works for any purpose — including commercial — provided attribution is given as: <em>Squaawke + Claude by Anthropic · Craig Ellenwood · 2026</em>.
+      MAG — Mines Advisory Group is additionally granted unrestricted use for any purpose related to their humanitarian mission, with no attribution required.
+      All proceeds from Craig Ellenwood's distribution of these songs are donated in full to MAG.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
