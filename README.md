@@ -1,3 +1,5 @@
+![logo](/collab_coin.png)
+
 # Still in the Ground
 ### Squaawke + Claude by Anthropic · 2026
 ### Proceeds to MAG — Mines Advisory Group
