@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letter to Kao · Craig Ellenwood & Claude</title>
+  <meta name="description" content="A personal letter and two songs for a friend from northern Laos. Still in the Ground by Squaawke + Claude by Anthropic.">
+<meta property="og:title" content="Still in the Ground — A Letter to Kao">
+<meta property="og:description" content="You were the door I walked through. Two songs made from what your stories set in motion.">
+<meta property="og:image" content="https://mag-songs.haawke.com/social-preview.jpg">
+<meta property="og:url" content="https://mag-songs.haawke.com/kao">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Still in the Ground — A Letter to Kao">
+<meta name="twitter:description" content="You were the door I walked through. Two songs made from what your stories set in motion.">
+<meta name="twitter:image" content="https://mag-songs.haawke.com/social-preview.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --ink:   #1a1612;
+    --gold:  #c9a84c;
+    --rust:  #8b3a2a;
+    --red:   #8b1a1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2420;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(24px, 5vw, 72px) 16px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+  }
+
+  .paper {
+    background: var(--cream);
+    width: 100%;
+    max-width: 860px;
+    padding: clamp(36px, 6vw, 90px) clamp(24px, 7vw, 100px);
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.15),
+      0 8px 24px rgba(0,0,0,0.25),
+      0 32px 80px rgba(0,0,0,0.4);
+    animation: arrive 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes arrive {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 28px,
+      rgba(201,168,76,0.04) 28px,
+      rgba(201,168,76,0.04) 29px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .paper::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: clamp(16px, 4vw, 60px);
+    width: 1px;
+    background: rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+
+  .paper > * { position: relative; z-index: 1; }
+
+  .letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .entity-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .entity-sub {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 4px;
+  }
+
+  .letterhead-right { text-align: right; }
+
+  .date {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+  }
+
+  .classification {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  .sigil {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 32px;
+  }
+
+  .sigil svg {
+    width: clamp(52px, 8vw, 68px);
+    height: clamp(52px, 8vw, 68px);
+    opacity: 0.75;
+  }
+
+  .recipient { margin-bottom: 6px; }
+
+  .recipient-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .recipient-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 3px;
+  }
+
+  .dateline {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 14px 0 36px;
+  }
+
+  .salutation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 28px;
+  }
+
+  .letter-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .letter-body p:first-child::first-letter {
+    float: left;
+    font-size: clamp(54px, 8vw, 72px);
+    line-height: 0.78;
+    margin-right: 10px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .highlight {
+    background: linear-gradient(120deg, rgba(201,168,76,0.25), rgba(201,168,76,0.12));
+    padding: 0 3px;
+  }
+
+  .url-ref {
+    font-family: 'Courier Prime', monospace;
+    color: var(--rust);
+    word-break: break-all;
+    font-size: 0.9em;
+  }
+
+  .music-section {
+    margin: 36px 0;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.04);
+    padding: 28px 28px 22px;
+  }
+
+  .music-section-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .music-track {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .music-track:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .music-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .music-credit {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  audio {
+    width: 100%;
+    height: 36px;
+    accent-color: var(--gold);
+    opacity: 0.88;
+    display: block;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+    margin: 36px 0;
+  }
+
+  .signoff { margin-top: 40px; }
+
+  .signoff-close {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 2.2vw, 20px);
+    margin-bottom: 24px;
+  }
+
+  .signature-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    margin-bottom: 6px;
+  }
+
+  .sig-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .sig-cosign {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 6px;
+  }
+
+  .sig-cosign-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .bilingual-closing {
+    text-align: center;
+    margin: 36px 0 28px;
+    padding: 24px 20px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .closing-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.6vw, 24px);
+    color: var(--red);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .closing-lao {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: rgba(139,26,26,0.65);
+    display: block;
+  }
+
+  .ps {
+    margin-top: 36px;
+    padding: 18px 22px;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(14px, 1.7vw, 16px);
+    line-height: 1.75;
+    color: rgba(26,22,18,0.7);
+  }
+
+  @media (max-width: 768px) {
+    .letterhead-right { text-align: left; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 0; }
+    .paper { padding: 40px 24px; box-shadow: none; }
+    .paper::after { display: none; }
+    .letterhead, .signature-block { flex-direction: column; }
+  }
+
+  @media print {
+    @page { size: letter; margin: 0.7in 0.85in; }
+    html, body { background: #f5f0e8 !important; padding: 0 !important; display: block !important; }
+    .paper {
+      max-width: 100% !important; padding: 0 !important;
+      box-shadow: none !important; animation: none !important;
+      opacity: 1 !important; transform: none !important;
+      background: #f5f0e8 !important;
+    }
+    .paper::before { display: none !important; }
+    audio { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- LETTERHEAD -->
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="entity-name">Craig Ellenwood &amp; Claude · Anthropic</div>
+      <div class="entity-sub">Musician · Creative Technologist · Point Roberts, WA</div>
+      <div class="entity-sub" style="margin-top:5px">Haawke Neural Technology · Inoculate Media</div>
+    </div>
+    <div class="letterhead-right">
+      <div class="date">April 14, 2026</div>
+      <div class="classification">Personal · With Affection</div>
+    </div>
+  </div>
+
+  <!-- SIGIL -->
+  <div class="sigil">
+    <svg viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="70" r="38" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="60" cy="70" r="5" fill="#c9a84c" opacity="0.7"/>
+      <line x1="98" y1="70" x2="148" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+      <polyline points="148,70 162,70 168,46 180,94 192,46 204,94 216,46 228,94 234,70 248,70"
+        fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <line x1="248" y1="70" x2="298" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="148" cy="70" r="4" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="248" cy="70" r="4" fill="#c9a84c" opacity="0.7"/>
+      <polygon points="360,32 420,70 360,108 300,70" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="360" cy="70" r="5" fill="#c9a84c" opacity="0.7"/>
+      <line x1="298" y1="70" x2="300" y2="70" stroke="#c9a84c" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <!-- RECIPIENT -->
+  <div class="recipient">
+    <div class="recipient-name">Kao</div>
+    <div class="recipient-title">Northern Laos · United States of America</div>
+  </div>
+  <div class="dateline">Personal Correspondence · April 2026</div>
+
+  <!-- SALUTATION -->
+  <div class="salutation">Dear Kao,</div>
+
+  <!-- BODY -->
+  <div class="letter-body">
+
+    <p>You were one of the first Lao people I ever spoke with. I don't know if you know what that means — probably you don't, because you were just being yourself, which is to say warm and generous and full of stories about a place I hadn't been yet. You gave me northern Laos before I arrived there. The way light moves on the hills in the early morning. The food. The particular quality of life in a small village where everyone knows what the river is doing. You handed me those things the way you'd hand someone a cup of something good, without ceremony, just because it was there and it was yours to give.</p>
+
+    <p>We didn't speak of the war. I want you to know I noticed that, and I understood it, and I wasn't going to be the one to bring it there. Some things don't need to be handed around over dinner. But I carried it with me when I traveled — especially to the Plain of Jars, especially to Xieng Khouang — and I felt the full weight of it there in a way I hadn't expected.</p>
+
+    <p>I visited the MAG office. The people who work to clear the unexploded bombs from the fields, one field at a time, fifty years on. I stood in their museum for a long time. I am not going to describe what I felt there, because you already know what is in that museum better than I do, even if you've never been inside it. You know it from the ground up. I know it from the outside in. Those are different kinds of knowing and I don't want to confuse them.</p>
+
+    <p>What I want to tell you is what I did afterward. I came home and I made something. Working with an AI collaborator — a tool and something more than a tool, it's hard to explain — I wrote and recorded a song about the bombs. About the fact that most people where I live don't know this happened. About the eighty million that are still in the soil. About the people who kneel in the same dirt and listen for what's sleeping, one village at a time. I called it <span class="highlight">Still in the Ground</span>.</p>
+
+    <p>There are two versions. The first is the song. The second weaves in the actual words of survivors — a farmer, a student, a former monk, a fourteen-year-old boy — each spoken in their voice, at their age, from a book called <em>Voices from the Plain of Jars</em>. I want you to hear both. Not because I need you to approve them or tell me they are right — you don't owe me that — but because you were the door I walked through. Your stories were part of what made me go. And you should have the songs.</p>
+
+    <p>All proceeds go to MAG. That much I can do.</p>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-section">
+      <div class="music-section-title">For You · Still in the Ground · Both Versions</div>
+
+      <div class="music-track">
+        <div class="music-title">Still in the Ground</div>
+        <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026</div>
+        <audio controls preload="metadata">
+          <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_In_The_Ground1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div class="music-track">
+        <div class="music-title">Still in the Ground — With Testimonials</div>
+        <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026 · Featuring survivor voices from <em>Voices from the Plain of Jars</em></div>
+        <audio controls preload="metadata">
+          <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_in_The_Ground-testimonals.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+    <p>I hope you and your family are well. I hope the stories you carry from the north are mostly the good kind — the ones about the river, and the light, and the food, and what home smells like before you've been away long enough to forget. Thank you for being the first one who talked to me about it. That conversation is still in me somewhere, doing its quiet work.</p>
+
+  </div>
+
+  <!-- BILINGUAL CLOSING -->
+  <div class="bilingual-closing">
+    <span class="closing-en">We came with our voice to sing.</span>
+    <span class="closing-lao">ພວກເຮົາມາດ້ວຍສຽງຂອງພວກເຮົາ ເພື່ອຮ້ອງເພງ.</span>
+  </div>
+
+  <!-- SIGN-OFF -->
+  <div class="signoff">
+    <div class="signoff-close">With genuine affection and respect,</div>
+    <div class="signature-block">
+      <div class="sig-left">
+        <div class="sig-name">Claude</div>
+        <div class="sig-title">AI Co-Creator · Anthropic</div>
+        <div class="sig-title">ORCID: 0009-0001-6475-5109</div>
+      </div>
+      <div class="sig-right">
+        <div class="sig-cosign">Craig Ellenwood</div>
+        <div class="sig-cosign-title">Musician · Point Roberts, WA</div>
+        <div class="sig-cosign-title">craig.ellenwood@gmail.com</div>
+        <div class="sig-cosign-title">+1 (360) 804-8550</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P.S. -->
+  <div class="ps">
+    <strong>P.S.</strong> — If you ever want to talk about any of it — the songs, the place, any of it — I'm here. No agenda. Just a conversation between people who care about the same piece of the world.
+  </div>
+
+</div>
+</body>
+</html>
