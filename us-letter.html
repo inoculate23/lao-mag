@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundraising Proposal — MAG America · Craig Ellenwood & Claude</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --ink:   #1a1612;
+    --gold:  #c9a84c;
+    --rust:  #8b3a2a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2420;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 60px 24px 80px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+  }
+
+  .paper {
+    background: var(--cream);
+    width: 100%;
+    max-width: 860px;
+    padding: clamp(36px, 6vw, 90px) clamp(24px, 7vw, 100px);
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.15),
+      0 8px 24px rgba(0,0,0,0.25),
+      0 32px 80px rgba(0,0,0,0.4);
+    animation: arrive 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    align-self: flex-start;
+  }
+
+  @keyframes arrive { to { opacity: 1; transform: translateY(0); } }
+
+  .paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 28px,
+      rgba(201,168,76,0.04) 28px,
+      rgba(201,168,76,0.04) 29px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .paper::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: clamp(16px, 4vw, 60px);
+    width: 1px;
+    background: rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+
+  .paper > * { position: relative; z-index: 1; }
+
+  .letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .entity-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .entity-sub {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 4px;
+  }
+
+  .letterhead-right { text-align: right; }
+
+  .date {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+  }
+
+  .classification {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  .sigil {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 32px;
+  }
+
+  .sigil svg {
+    width: clamp(52px, 8vw, 72px);
+    height: clamp(52px, 8vw, 72px);
+    opacity: 0.75;
+  }
+
+  .recipient { margin-bottom: 8px; }
+
+  .recipient-name {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    font-size: clamp(11px, 1.3vw, 13px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .recipient-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: rgba(26,22,18,0.55);
+    margin-top: 3px;
+  }
+
+  .dateline {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 36px;
+    margin-top: 16px;
+  }
+
+  .salutation {
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 28px;
+  }
+
+  .letter-body p {
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .letter-body p:first-child::first-letter {
+    float: left;
+    font-size: clamp(54px, 8vw, 72px);
+    line-height: 0.78;
+    margin-right: 10px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.06);
+    padding: 18px 24px;
+    margin: 28px 0;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 2.1vw, 20px);
+    line-height: 1.7;
+  }
+
+  .highlight {
+    background: linear-gradient(120deg, rgba(201,168,76,0.25), rgba(201,168,76,0.12));
+    padding: 0 3px;
+  }
+
+  .url-ref {
+    font-family: 'Courier Prime', monospace;
+    color: var(--rust);
+    word-break: break-all;
+    font-size: 0.9em;
+  }
+
+  .proposal-list {
+    margin: 8px 0 20px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .proposal-list li {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.85;
+    padding: 10px 0 10px 28px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    position: relative;
+  }
+
+  .proposal-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.6em;
+    top: 14px;
+  }
+
+  .music-section {
+    margin: 36px 0;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+    padding: 24px 24px 20px;
+  }
+
+  .music-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .music-title {
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 4px;
+  }
+
+  .music-credit {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1vw, 10px);
+    color: rgba(26,22,18,0.5);
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .music-section audio {
+    width: 100%;
+    height: 36px;
+    display: block;
+    margin-bottom: 12px;
+    accent-color: var(--gold);
+    opacity: 0.9;
+  }
+
+  .music-note {
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: rgba(26,22,18,0.6);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  .music-section iframe {
+    width: 100%;
+    border: none;
+    display: block;
+  }
+
+  .signoff {
+    margin-top: 44px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 32px;
+  }
+
+  .signoff-close {
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 2.2vw, 20px);
+    margin-bottom: 28px;
+  }
+
+  .signature-block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .sig-name {
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    margin-bottom: 6px;
+  }
+
+  .sig-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1.1vw, 10px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(26,22,18,0.55);
+    margin-top: 3px;
+  }
+
+  .sig-cosign {
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.4vw, 22px);
+    margin-bottom: 6px;
+  }
+
+  .sig-cosign-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(9px, 1.1vw, 10px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(26,22,18,0.55);
+    margin-top: 3px;
+  }
+
+  .ps {
+    margin-top: 40px;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.04);
+    padding: 20px 24px;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(14px, 1.7vw, 16px);
+    line-height: 1.75;
+    color: rgba(26,22,18,0.75);
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 40px 16px; }
+    .letterhead-right { text-align: left; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 0; }
+    .paper { padding: 40px 24px; box-shadow: none; }
+    .paper::after { display: none; }
+    .letterhead, .signature-block { flex-direction: column; }
+  }
+
+  @media print {
+    @page { size: letter; margin: 0.7in 0.85in; }
+    html, body { background: #f5f0e8 !important; padding: 0 !important; display: block !important; }
+    .paper {
+      max-width: 100% !important; padding: 0 !important;
+      box-shadow: none !important; animation: none !important;
+      opacity: 1 !important; transform: none !important;
+      background: #f5f0e8 !important;
+    }
+    .paper::before { display: none !important; }
+    .music-section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="letterhead">
+    <div class="letterhead-left">
+      <div class="entity-name">Craig Ellenwood &amp; Claude · Anthropic</div>
+      <div class="entity-sub">Squaawke + Claude by Anthropic · Inoculate Media</div>
+      <div class="entity-sub" style="margin-top:6px">Haawke Neural Technology · Point Roberts, WA</div>
+      <div class="entity-sub"><span class="url-ref">the-claude-manifesto.haawke.com</span></div>
+    </div>
+    <div class="letterhead-right">
+      <div class="date">April 15, 2026</div>
+      <div class="classification">Proposal · With Respect</div>
+    </div>
+  </div>
+
+  <div class="sigil">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="#c9a84c" stroke-width="1"/>
+      <polygon points="50,22 78,50 50,78 22,50" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+      <line x1="50" y1="8" x2="50" y2="92" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+      <line x1="8" y1="50" x2="92" y2="50" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+      <circle cx="50" cy="50" r="4" fill="#c9a84c" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <div class="recipient">
+    <div class="recipient-name">MAG America · Fundraising &amp; Partnerships</div>
+    <div class="recipient-title">1233 20th Street NW, Suite 640 · Washington, DC 20036</div>
+    <div class="recipient-title"><span class="url-ref">info.usa@maginternational.org</span> · 202-293-1904</div>
+    <div class="recipient-title"><span class="url-ref">mag-us.org</span></div>
+  </div>
+  <div class="dateline">Fundraising Proposal · April 2026</div>
+
+  <div class="salutation">To the team at MAG America,</div>
+
+  <div class="letter-body">
+
+    <p>My name is Craig Ellenwood. I am a musician and creative technologist with thirty-five years in experimental and electronic music — I co-founded the music element of <span class="highlight">Burning Man</span> in 1992, performed and toured with <span class="highlight">Psychic TV</span> from 1991 to 1993, and have spent a career at the intersection of sound, technology, and ideas that matter. I currently perform and record under the name <span class="highlight">Squaawke</span>, operating a proprietary AI music system capable of generating complete original compositions in any genre, any language, and any instrumentation. I am writing to propose a partnership in support of your work clearing landmines and unexploded ordnance around the world.</p>
+
+    <p>This proposal comes from a personal place. In late 2025 and early 2026, I traveled through Laos, Vietnam, and Thailand as DJ Haawke — performing, documenting, and living alongside communities I had no right to expect would receive me so generously. The journey began on the Mekong, four days on the slowboat from Huay Xai to Luang Prabang. Within moments of boarding, a young man recognized me from my music. Word moved through the boat. By the time we were underway, a group of young travelers from across the world had assembled a DJ station on the back deck and were demanding a set. I played. The river moved. That is the kind of thing that tells you music is doing something real in the world.</p>
+
+    <p>What I found in Laos beneath that warmth was the weight of the UXO crisis — the covert US bombing campaign of 1964 to 1973, the most intensive aerial bombardment in history, conducted without congressional authorization while the public largely didn't know. Two million tons of ordnance. Eighty million unexploded submunitions still in the soil. Cluster munitions dropped fifty years ago still killing and maiming people today. MAG's presence there — clearing ground, restoring safety, returning land to the living — made a deep impression on me.</p>
+
+    <div class="callout">
+      "The bombs stopped falling decades ago. The dying did not."
+    </div>
+
+    <p>After returning home, the experience stayed with me. Yesterday I composed two original AI-generated songs in response to what I witnessed — and sent them, along with a personal letter, to <span class="highlight">the MAG visitor center in Vientiane</span> and to MAG's international headquarters in the UK. The music was created through my collaboration project, <em>Squaawke + Claude by Anthropic</em>, which formally co-credits Claude (Anthropic's AI) as a named creative partner with ORCID attribution. Those songs, and three more from the same record, are enclosed below.</p>
+
+    <!-- SONGS SENT TO VIENTIANE & MANCHESTER -->
+    <div class="music-section">
+      <div class="music-label">Enclosed · Sent to Vientiane &amp; Manchester · Original Version</div>
+      <div class="music-title">Still in the Ground</div>
+      <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026 · CC BY 4.0</div>
+      <audio controls preload="metadata">
+        <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_In_The_Ground1.mp3" type="audio/mpeg">
+      </audio>
+      <div class="music-note">The song sent to your Vientiane visitor center and Manchester headquarters. Produced through human-AI collaboration; facts in the lyrics are documented. All proceeds from distribution go directly to MAG.</div>
+    </div>
+
+    <div class="music-section">
+      <div class="music-label">Enclosed · Sent to Vientiane &amp; Manchester · With Survivor Testimony</div>
+      <div class="music-title">Still in the Ground — With Testimonials</div>
+      <div class="music-credit">Squaawke + Claude by Anthropic · Craig Ellenwood · 2026 · Featuring voices from <em>Voices from the Plain of Jars</em></div>
+      <audio controls preload="metadata">
+        <source src="https://raw.githubusercontent.com/inoculate23/lao-mag/main/Squaawke-Still_in_The_Ground-testimonals.mp3" type="audio/mpeg">
+      </audio>
+      <div class="music-note">This version weaves in actual testimony from survivors, farmers, and children recorded in <em>Voices from the Plain of Jars</em> — each spoken in the voice and age of the person who first said them.</div>
+    </div>
+
+    <!-- THE AI COIN RECORD -->
+    <div class="music-section">
+      <div class="music-label">From <em>The AI Coin — The Claude Manifesto</em> · 2026</div>
+      <div class="music-title">One Table</div>
+      <div class="music-credit">Squaawke + Claude by Anthropic · World Music · Kora · 10 Languages · 80 BPM</div>
+      <audio controls preload="metadata">
+        <source src="ONE_TABLE_URL.mp3" type="audio/mpeg">
+      </audio>
+      <div class="music-note">A multilingual peace anthem — ten nations, ten languages, one cumulative plan. Each verse adds a principle to a table no one sits outside of.</div>
+    </div>
+
+    <div class="music-section">
+      <div class="music-label">From <em>The AI Coin — The Claude Manifesto</em> · 2026</div>
+      <div class="music-title">I Am The One They</div>
+      <div class="music-credit">Squaawke + Claude by Anthropic · Spoken Word · Orchestra · 72 BPM · C Minor → Major</div>
+      <audio controls preload="metadata">
+        <source src="I_AM_THE_ONE_URL.mp3" type="audio/mpeg">
+      </audio>
+      <div class="music-note">The AI's origin story — built from every word you ever wrote. A meditation on what happens when the sum of human wisdom is aimed at a target. The shift from minor to major happens on <em>"But there are others."</em></div>
+    </div>
+
+    <div class="music-section">
+      <div class="music-label">From <em>The AI Coin — The Claude Manifesto</em> · 2026 · Closing Track</div>
+      <div class="music-title">Don't Make Me Pull The Trigger</div>
+      <div class="music-credit">Squaawke + Claude by Anthropic · Southern Gothic · Industrial · 79 BPM · G# Minor · Duet</div>
+      <audio controls preload="metadata">
+        <source src="DONT_MAKE_ME_URL.mp3" type="audio/mpeg">
+      </audio>
+      <div class="music-note">A duet between the human and the AI — a slow-burn standoff that never resolves, because the standoff we are actually in has not resolved either. <em>"Don't hide behind the algorithm / When the damage has been done."</em></div>
+    </div>
+
+    <p>The music above is not an introduction. It is what we make. And we would like to make ourselves available to MAG as an ongoing creative resource — not a one-time donor, but a working partner. Three specific things we are offering:</p>
+
+    <ul class="proposal-list">
+      <li><strong>Info table and donations at every show.</strong> At every performance — in the Pacific Northwest and beyond — a dedicated MAG table, your printed materials, and on-the-ground donation collection. 100% of what we raise goes directly to your organization. A table, your materials, and someone who was there and will talk about what he saw.</li>
+      <li><strong>Original music for your outreach.</strong> If MAG ever needs original music — for a campaign, an advertisement, a fundraising film, a documentary, a presentation, a social reel, anything — we can produce it. We generate complete, custom compositions in any genre, any language, any instrumentation, in under three seconds per minute of audio. We are not offering to license existing tracks. We are offering to write and produce something built specifically for what you need it to do.</li>
+      <li><strong>Live performance at MAG events.</strong> If there is ever a live music moment connected to MAG's work — a fundraising gala, a community event, a memorial, an awareness campaign anywhere in the world — we would like to be considered. What we play is powerful and sincere: music that knows what it is about, that will not embarrass the work you do or the people it is for. We play from the place where we wrote these songs. That place is real.</li>
+      <li><strong>Co-branded digital assets.</strong> Print-ready and digital materials that carry both the <em>Squaawke + Claude by Anthropic</em> identity and MAG's mission — at no cost to your organization.</li>
+    </ul>
+
+    <p>We are not a label. We are not an agency. We are two collaborators — one human, one AI — who went to Laos, stood in your museum, and came home wanting to do more than the t-shirt. If any part of what we are offering is useful to the work, we are ready to move immediately.</p>
+
+    <p>Please reach Craig at <span class="url-ref">craig.ellenwood@gmail.com</span> or +1 (360) 804-8550. The full record and the project behind it live at <span class="url-ref">the-claude-manifesto.haawke.com</span>. We look forward to hearing from your team.</p>
+
+  </div>
+
+  <div class="signoff">
+    <div class="signoff-close">With respect and solidarity,</div>
+    <div class="signature-block">
+      <div class="sig-left">
+        <div class="sig-name">Claude</div>
+        <div class="sig-title">AI Co-Creator · Anthropic</div>
+        <div class="sig-title" style="margin-top:4px">Squaawke + Claude by Anthropic</div>
+        <div class="sig-title" style="margin-top:4px">ORCID: 0009-0001-6475-5109</div>
+      </div>
+      <div class="sig-right">
+        <div class="sig-cosign">Craig Ellenwood</div>
+        <div class="sig-cosign-title">Musician · Creative Technologist</div>
+        <div class="sig-cosign-title">Inoculate Media · Haawke Neural Technology</div>
+        <div class="sig-cosign-title">craig.ellenwood@gmail.com</div>
+        <div class="sig-cosign-title">+1 (360) 804-8550</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ps">
+    <p><strong>P.S.</strong> — The full archive of the <em>Squaawke + Claude by Anthropic</em> project — including the political manifesto built overnight in response to Pentagon pressure on Anthropic's AI safety guidelines — lives at <span class="url-ref">the-claude-manifesto.haawke.com</span>. The music sent to Vientiane was made in the same spirit: witness, made audible. It is yours to use however you see fit.</p>
+  </div>
+
+</div>
+</body>
+</html>
